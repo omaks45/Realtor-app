@@ -9,8 +9,8 @@ export class AuthController {
 
     @Post('/signup')
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    
     signUp(@Body() body: SignupDto) {
-        return this.authService.signUp();
+        return this.authService.signUp(body);
     }
 }

@@ -8,7 +8,7 @@ export class SignupDto {
     name: string;
 
     @Matches(/^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, {message: 'Invalid phone number'})
-    phone: string;
+    phoneNumber: string;
 
     @IsEmail()
     email: string;
