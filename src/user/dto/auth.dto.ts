@@ -14,6 +14,16 @@ export class SignupDto {
     email: string;
 
     @MinLength(6)
+    @IsString()
+    password: string;
+}
+// login dto validation
 
+export class LoginDto {
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    @IsNotEmpty()
     password: string;
 }
