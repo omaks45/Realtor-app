@@ -21,7 +21,7 @@ interface LoginParams {
 @Injectable()
 export class AuthService {
     constructor(private readonly prismaService: PrismaService) {}
-    async signUp({ email, password, phoneNumber, name }: SignupParams) {
+    async signUp({ email, password, phoneNumber, name }: SignupParams, userType: UserType) {
         //check if user already exists
         const userExist = await this.prismaService.user.findUnique({
             where: {
@@ -42,10 +42,10 @@ export class AuthService {
                 password: hashedPassword,
                 phoneNumber,
                 name,
-                userType: UserType.BUYER
+                userType,
             }
         })
-        return this.generateJwt(user.name, user.id);
+        return this.generateJwt(name, user.id);
     }
 
         // User login method

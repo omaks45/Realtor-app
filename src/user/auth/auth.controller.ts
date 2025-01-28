@@ -19,17 +19,20 @@ export class AuthController {
         // check if the user is not a buyer
         if (userType !== UserType.BUYER) {
             if (!body.productKey) {
-                throw new UnauthorizedException()
+                throw new UnauthorizedException("Product key is required");
             }
             //bring the valid product key from the database and compare
             const validProductKey = `${body.email}-${userType}-${process.env.PRODUCTKEYGEN}`;
+            console.log('Generated Valid Product Key:', validProductKey);
+            console.log('Provided Product Key:', body.productKey);
             // compare the product key
             const isValid = await bcrypt.compare(validProductKey, body.productKey);
             if (!isValid) {
-                throw new UnauthorizedException();
+                console.log('Product key validation failed');
+                throw new UnauthorizedException("Invalid product key");
             }
         }
-        return this.authService.signUp(body);
+        return this.authService.signUp(body, userType);
     }
     // create an endpoint for login
 
