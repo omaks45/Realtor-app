@@ -8,4 +8,9 @@ export class HomeController {
         return []
         
     }
+
+    @Get(':id')
+    getHomeById(){
+        return {}
+    }
 }
