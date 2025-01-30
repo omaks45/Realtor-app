@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Put } from '@nestjs/common';
 
 @Controller('home')
 export class HomeController {
@@ -16,6 +16,11 @@ export class HomeController {
 
     @Post()
     createHome() {
+        return {}
+    }
+
+    @Put(':id')
+    updateHome() {
         return {}
     }
 }
