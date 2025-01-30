@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { HomeModule } from './home/home.module';
 
 
 
@@ -11,6 +12,6 @@ import { PrismaModule } from './prisma/prisma.module';
 
   controllers: [AppController],
   providers: [AppService],
-  imports: [UserModule, PrismaModule],
+  imports: [UserModule, PrismaModule, HomeModule],
 })
 export class AppModule {}
