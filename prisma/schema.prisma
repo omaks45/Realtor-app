@@ -29,6 +29,8 @@ model Home {
   realtor             User @relation(fields: [realtorId], references: [id])
   realtorId           String @db.ObjectId
   messages            Message[]
+
+  @@map("homes")
 }
 
 model Image {
