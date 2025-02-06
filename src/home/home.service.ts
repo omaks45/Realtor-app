@@ -1,12 +1,18 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { HomeResponseDto } from './dto/home.dto';
 
 @Injectable()
 export class HomeService {
     constructor(private readonly prismaService: PrismaService){}
-    getHomes() {
-        // findMany() is a method provided by PrismaClient that returns all records from the Home table
-        return this.prismaService.home.findMany();
+    async getHomes(): Promise<HomeResponseDto[]> {
+        const homes = await this.prismaService.home.findMany({
+            where: { address: { not: '' } }, // Ensures at least some data is returned
+          });
+          console.log("Homes found:", homes);
+          
+        // map() is a method provided by JavaScript that creates a new array with the results of calling a provided function on every element in the calling array
+        return homes.map((home) => new HomeResponseDto(home));
     }
 }
