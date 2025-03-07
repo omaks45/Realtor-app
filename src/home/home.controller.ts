@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Delete, Get, Post, Put, } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
+import { Controller, Delete, Get, Post, Put, Query} from '@nestjs/common';
 import { HomeService } from './home.service';
 import { HomeResponseDto } from './dto/home.dto';
 
@@ -8,7 +10,18 @@ export class HomeController {
     constructor(private readonly homeService: HomeService){}
         
     @Get()
-    getHomes(): Promise<HomeResponseDto[]>{
+    getHomes(
+        @Query('city') city?: string,
+        @Query('minPrice') minPrice?: string,
+        @Query('maxPrice') maxPrice?: string,
+        @Query('propertyType') propertyType?: string,
+    ): Promise<HomeResponseDto[]>{
+        console.log({
+            city,
+            minPrice,
+            maxPrice,
+            propertyType,
+        })
         return this.homeService.getHomes();
             
     }

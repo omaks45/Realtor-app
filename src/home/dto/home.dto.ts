@@ -13,6 +13,7 @@ export class HomeResponseDto {
   price: number; // Matches Prisma's Float
   landSize: number; // Matches Prisma's Float
   propertyType: PropertyType;
+  Images: string; // Matches Prisma's String[]
   @Exclude()
   createAt: Date;
   @Exclude()
